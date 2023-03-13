@@ -13,3 +13,4 @@
 //     public UniversityRegistrarContext(DbContextOptions options) : base(options) { }
 //   }
 // }
+
