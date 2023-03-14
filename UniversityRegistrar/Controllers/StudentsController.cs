@@ -38,7 +38,7 @@ namespace UniversityRegistrar.Controllers
     {
       Student thisStudent = _db.Students
                                 .Include(course => course.Courses)
-                                .ThenInclude(course => course.JoinEntities)
+                                .ThenInclude(course => course.JoinDepartment)
                                 .ThenInclude(join => join.Department)
                                 .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);

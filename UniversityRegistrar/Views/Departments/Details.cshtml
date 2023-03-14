@@ -9,7 +9,7 @@
 <hr />
 <h3>Department: @Html.DisplayFor(model => model.CourseName)</h3>
 
-@if(@Model.JoinEntities.Count == 0)
+@if(@Model.JoinDepartment.Count == 0)
 {
   <p>No courses assigned to this department </p>
 }
@@ -17,7 +17,7 @@ else
 {
   <h4>Courses in department:</h4>
   <ul>
-  @foreach(CourseDepartment join in Model.JoinEntities)
+  @foreach(CourseDepartment join in Model.JoinDepartment)
   {
     <li>@join.Course.Description</li>
     @using (Html.BeginForm("DeleteJoin", "Departments"))

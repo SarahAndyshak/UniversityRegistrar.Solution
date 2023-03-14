@@ -14,6 +14,8 @@ namespace UniversityRegistrar.Models
     public bool IsComplete { get; set; } = false;
     //public DateTime? DueDate { get; set; }
     public Student Student { get; set; }
-    public List<CourseDepartment> JoinEntities { get; }
+    public List<CourseDepartment> JoinDepartment { get; }
+    public List<StudentCourse> JoinStudent { get; }
+   
   }
 }

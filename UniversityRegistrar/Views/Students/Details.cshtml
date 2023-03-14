@@ -19,23 +19,24 @@ else
 {
   <h4>Courses this student is taking:</h4>
   <ul>
+  
   @foreach(Course course in Model.Courses)
   {
-    string departments = "";
-    @if(course.JoinEntities.Count == 0)
+    string courses = "";
+    @if(course.JoinDepartment.Count == 0)
     {
-      departments = "This student does not have any Departments.";
+      courses = "This student does not have any Courses.";
     }
     else
     {
-      List<string> departmentList = new List<string>();
-      @foreach(CourseDepartment join in course.JoinEntities)
+      List<string> courseList = new List<string>();
+      @foreach(StudentCourse join in course.JoinStudent)
       {
-        departmentList.Add(join.Department.CourseName);
+        courseList.Add(join.Course.Description);
       }
-      departments = String.Join(", ", departmentList);
+      courses = String.Join(", ", courseList);
     }
-    <li>@course.Description | Departments: @departments</li>
+    <li>@course.Description | Departments: @courses</li>
   }
   </ul>
 }

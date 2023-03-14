@@ -8,6 +8,6 @@ namespace UniversityRegistrar.Models
     public int DepartmentId { get; set; }
     [Required(ErrorMessage = "The course's daprtment can't be empty!")]
     public string CourseName { get; set; }//Actually handling department name
-    public List<CourseDepartment> JoinEntities { get; }
+    public List<CourseDepartment> JoinDepartment { get; }
   }
 }

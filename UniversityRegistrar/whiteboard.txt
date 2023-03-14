@@ -4,7 +4,7 @@ Bugs:
 
 Stretch Goals:
 - checkboxes for student and courses.(adding students to courses)
-- 
+- Check if list already contains course or dept or student.
 
 
 

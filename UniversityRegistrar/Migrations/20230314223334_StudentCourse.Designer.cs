@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversityRegistrar.Models;
 
@@ -10,9 +11,10 @@ using UniversityRegistrar.Models;
 namespace UniversityRegistrar.Migrations
 {
     [DbContext(typeof(UniversityRegistrarContext))]
-    partial class UniversityRegistrarContextModelSnapshot : ModelSnapshot
+    [Migration("20230314223334_StudentCourse")]
+    partial class StudentCourse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,27 +98,6 @@ namespace UniversityRegistrar.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("UniversityRegistrar.Models.StudentCourse", b =>
-                {
-                    b.Property<int>("StudentCourseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentCourseId");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("StudentCourse");
-                });
-
             modelBuilder.Entity("UniversityRegistrar.Models.Course", b =>
                 {
                     b.HasOne("UniversityRegistrar.Models.Student", "Student")
@@ -131,13 +112,13 @@ namespace UniversityRegistrar.Migrations
             modelBuilder.Entity("UniversityRegistrar.Models.CourseDepartment", b =>
                 {
                     b.HasOne("UniversityRegistrar.Models.Course", "Course")
-                        .WithMany("JoinDepartment")
+                        .WithMany("JoinEntities")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("UniversityRegistrar.Models.Department", "Department")
-                        .WithMany("JoinDepartment")
+                        .WithMany("JoinEntities")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -147,42 +128,19 @@ namespace UniversityRegistrar.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("UniversityRegistrar.Models.StudentCourse", b =>
-                {
-                    b.HasOne("UniversityRegistrar.Models.Course", "Course")
-                        .WithMany("JoinStudent")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UniversityRegistrar.Models.Student", "Student")
-                        .WithMany("JoinStudent")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("UniversityRegistrar.Models.Course", b =>
                 {
-                    b.Navigation("JoinDepartment");
-
-                    b.Navigation("JoinStudent");
+                    b.Navigation("JoinEntities");
                 });
 
             modelBuilder.Entity("UniversityRegistrar.Models.Department", b =>
                 {
-                    b.Navigation("JoinDepartment");
+                    b.Navigation("JoinEntities");
                 });
 
             modelBuilder.Entity("UniversityRegistrar.Models.Student", b =>
                 {
                     b.Navigation("Courses");
-
-                    b.Navigation("JoinStudent");
                 });
 #pragma warning restore 612, 618
         }

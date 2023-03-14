@@ -50,7 +50,7 @@ namespace UniversityRegistrar.Controllers
     {
       Course thisCourse = _db.Courses
               .Include(course => course.Student)
-              .Include(course => course.JoinEntities)
+              .Include(course => course.JoinDepartment)
               .ThenInclude(join => join.Department)
               .FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
