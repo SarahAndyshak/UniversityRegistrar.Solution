@@ -19,9 +19,8 @@ namespace UniversityRegistrar.Controllers
     public ActionResult Index()
     {
       List<Course> model = _db.Courses
-                            .Include(course => course.Student)
-                            //.OrderBy(course => course.DueDate)
-                            .ToList();
+                              .Include(course => course.Student)
+                              .ToList();
       return View(model);
     }
 
@@ -36,8 +35,8 @@ namespace UniversityRegistrar.Controllers
     {
       if (!ModelState.IsValid)
       {
-          ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
-          return View(course);
+        ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
+        return View(course);
       }
       else
       {
@@ -64,17 +63,17 @@ namespace UniversityRegistrar.Controllers
       return View(thisCourse);
     }
 
-    // public ActionResult IsComplete(int id, bool isComplete)
-    // {
-    //   Course course = _db.Courses.FirstOrDefault(course => course.ItemId == id);
-    //   if (course == null)
-    //   {
-    //     return NotFound();
-    //   }
-    //   course.IsComplete = isComplete;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    public ActionResult IsComplete(int id, bool isComplete)
+    {
+      Course course = _db.Courses.FirstOrDefault(course => course.CourseId == id);
+      if (course == null)
+      {
+        return NotFound();
+      }
+      course.IsComplete = isComplete;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
     [HttpPost]
     public ActionResult Edit(Course course)
@@ -109,9 +108,9 @@ namespace UniversityRegistrar.Controllers
     [HttpPost]
     public ActionResult AddDepartment(Course course, int departmentId)
     {
-      #nullable enable
+#nullable enable
       CourseDepartment? joinEntity = _db.CourseDepartments.FirstOrDefault(join => (join.DepartmentId == departmentId && join.CourseId == course.CourseId));
-      #nullable disable
+#nullable disable
       if (joinEntity == null && departmentId != 0)
       {
         _db.CourseDepartments.Add(new CourseDepartment() { DepartmentId = departmentId, CourseId = course.CourseId });
@@ -128,6 +127,6 @@ namespace UniversityRegistrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
- 
+
   }
 }

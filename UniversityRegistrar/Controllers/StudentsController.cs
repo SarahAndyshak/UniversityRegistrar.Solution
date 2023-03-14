@@ -13,9 +13,11 @@ namespace UniversityRegistrar.Controllers
     public StudentsController(UniversityRegistrarContext db)
     {
       _db = db;
-    }    public ActionResult Index()
+    }
+    public ActionResult Index()
     {
-      List<Student> model = _db.Students.ToList();
+      List<Student> model = _db.Students
+                               .OrderBy(course => course.EnrollmentDate).ToList();
       return View(model);
     }
 
