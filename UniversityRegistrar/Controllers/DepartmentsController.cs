@@ -43,7 +43,7 @@ namespace UniversityRegistrar.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddItem(int id)
+    public ActionResult AddCourse(int id)
     {
       Department thisDepartment = _db.Departments.FirstOrDefault(departments => departments.DepartmentId == id);
       ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Description");
@@ -51,14 +51,14 @@ namespace UniversityRegistrar.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddItem(Department department, int itemId)
+    public ActionResult AddCourse(Department department, int courseId)
     {
 #nullable enable
-      CourseDepartment? joinEntity = _db.CourseDepartments.FirstOrDefault(join => (join.CourseId == itemId && join.DepartmentId == department.DepartmentId));
+      CourseDepartment? joinEntity = _db.CourseDepartments.FirstOrDefault(join => (join.CourseId == courseId && join.DepartmentId == department.DepartmentId));
 #nullable disable
-      if (joinEntity == null && itemId != 0)
+      if (joinEntity == null && courseId != 0)
       {
-        _db.CourseDepartments.Add(new CourseDepartment() { CourseId = itemId, DepartmentId = department.DepartmentId });
+        _db.CourseDepartments.Add(new CourseDepartment() { CourseId = courseId, DepartmentId = department.DepartmentId });
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = department.DepartmentId });

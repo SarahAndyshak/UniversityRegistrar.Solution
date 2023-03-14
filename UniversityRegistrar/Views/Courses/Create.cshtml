@@ -15,10 +15,10 @@
   @Html.TextBoxFor(model => model.Description, new { required="required" })
 
   @Html.LabelFor(model => model.Student)
-  @Html.DropDownList("StudentId")
+  @Html.DropDownList("StudentId") 
 
   <input type="submit" value="Add new course" class="btn btn-default" />
 }
 
-<p>@Html.ActionLink("Add enrollment date", "Edit")</p>
+<p>@Html.ActionLink("Add student", "Edit")</p>
 <p>@Html.ActionLink("Show all items", "Index")</p>

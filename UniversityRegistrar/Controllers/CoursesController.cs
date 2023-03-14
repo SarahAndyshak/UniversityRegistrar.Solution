@@ -26,7 +26,7 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
       return View();
     }
 
@@ -35,7 +35,7 @@ namespace UniversityRegistrar.Controllers
     {
       if (!ModelState.IsValid)
       {
-        ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
+        ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
         return View(course);
       }
       else
@@ -59,7 +59,7 @@ namespace UniversityRegistrar.Controllers
     public ActionResult Edit(int id)
     {
       Course thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
-      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
       return View(thisCourse);
     }
 
@@ -101,7 +101,7 @@ namespace UniversityRegistrar.Controllers
     public ActionResult AddDepartment(int id)
     {
       Course thisCourse = _db.Courses.FirstOrDefault(courses => courses.CourseId == id);
-      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Title");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "CourseName");
       return View(thisCourse);
     }
 

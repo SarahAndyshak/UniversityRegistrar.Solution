@@ -7,15 +7,15 @@
 
 <h2>Department Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.CourseName): @Html.DisplayFor(model => model.CourseName)</h3>
+<h3>Department: @Html.DisplayFor(model => model.CourseName)</h3>
 
 @if(@Model.JoinEntities.Count == 0)
 {
-  <p>This course does not belind to any department </p>
+  <p>No courses assigned to this department </p>
 }
 else
 {
-  <h4>Courses the department belongs to:</h4>
+  <h4>Courses in department:</h4>
   <ul>
   @foreach(CourseDepartment join in Model.JoinEntities)
   {
@@ -30,7 +30,7 @@ else
 }
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
-<!-- <p>@Html.ActionLink("Add a Course", "AddCourse") , new { id = Model.CourseDepartment })</p> -->
-<p>@Html.ActionLink("Add a Course", "AddCourse")</p>
+ <p>@Html.ActionLink("Add a Course", "AddCourse" , new { id = Model.DepartmentId })</p>
+@* <p>@Html.ActionLink("Add a Course", "AddCourse")</p> *@
 <p>@Html.ActionLink("Edit Department", "Edit", new { id = Model.DepartmentId })</p>
 <p>@Html.ActionLink("Delete Department", "Delete", new { id = Model.DepartmentId })</p>
