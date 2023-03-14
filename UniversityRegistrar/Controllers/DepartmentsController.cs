@@ -53,9 +53,9 @@ namespace UniversityRegistrar.Controllers
     [HttpPost]
     public ActionResult AddItem(Department department, int itemId)
     {
-      #nullable enable
+#nullable enable
       CourseDepartment? joinEntity = _db.CourseDepartments.FirstOrDefault(join => (join.CourseId == itemId && join.DepartmentId == department.DepartmentId));
-      #nullable disable
+#nullable disable
       if (joinEntity == null && itemId != 0)
       {
         _db.CourseDepartments.Add(new CourseDepartment() { CourseId = itemId, DepartmentId = department.DepartmentId });
