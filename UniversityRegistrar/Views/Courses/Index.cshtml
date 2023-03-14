@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@using UniversityRegistrar.Models;
+
+<h1>Courses</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No courses have been added yet!</h3>
+} 
+else
+{
+<ul>
+@foreach (Course course in Model)
+{
+  <li>
+    <input type="checkbox" @(course.IsComplete ? "checked" : "") onclick="location.href='@Url.Action("IsComplete", new { id = course.CourseId, isComplete = !course.IsComplete })'" />
+    @if(course.IsComplete)
+    {
+      <strike>@course.Description</strike>
+    }
+    else
+    {
+      @Html.ActionLink($"{course.Description}", "Details", new { id = course.CourseId })
+    }
+    | @course.Student.StudentName
+  </li>
+}
+</ul>
+}
+
+<p>@Html.ActionLink("Add new course", "Create")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
