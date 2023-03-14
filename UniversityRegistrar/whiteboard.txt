@@ -1,3 +1,22 @@
+Bugs:
+- Courses/Create not working when there is a student in the DB (Works when there is no student)
+- Enrollment date doesn't have datetime part of form.
+- Add course from Deapartment/add course exception handling error.
+- Add Deapartment Not working
+- Course Details not working
+- Course Edit not working
+- 
+Note: Can't add course without student and adding a student breaks the other create pages
+
+Stretch Goals:
+- checkboxes for student and courses.(adding students to courses)
+- 
+
+
+
+------------------------------
+
+
 University
 
 STUDENT - //(category)
@@ -25,3 +44,4 @@ Course type/dept(ie. Math Chem, Eng, hist)
 Course Number (ex. HIST100, hist201...301)
 
 COURSE-DEPT -
+

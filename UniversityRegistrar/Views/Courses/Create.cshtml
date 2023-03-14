@@ -12,7 +12,7 @@
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Description)
-  @Html.TextBoxFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description, new { required="required" })
 
   @Html.LabelFor(model => model.Student)
   @Html.DropDownList("StudentId")
