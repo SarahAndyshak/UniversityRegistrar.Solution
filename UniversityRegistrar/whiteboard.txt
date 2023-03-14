@@ -1,0 +1,27 @@
+University
+
+STUDENT - //(category)
+studentId
+Student Name
+Taken courses
+enrollment date 
+...
+credit hours (gained)
+Completed Courses
+Major
+...
+
+COURSES - //(item)
+CoursesId
+Course name
+...
+credit hours(worth)
+Core/Elective
+...
+
+
+DEPT - //(tag)
+Course type/dept(ie. Math Chem, Eng, hist)
+Course Number (ex. HIST100, hist201...301)
+
+COURSE-DEPT -
