@@ -10,7 +10,7 @@ namespace UniversityRegistrar.Models
     [Required(ErrorMessage = "The students name can't be empty!")]
     public string StudentName { get; set; }
     public DateTime? EnrollmentDate { get; set; }
-    public List<Course> Courses { get; set; }
+    public List<Course> Course { get; set; }
     public List<StudentCourse> JoinStudent { get; }
   }
 }

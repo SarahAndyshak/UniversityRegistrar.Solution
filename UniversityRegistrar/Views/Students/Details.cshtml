@@ -11,7 +11,7 @@
 <h3>@Html.DisplayNameFor(model => model.StudentName): @Html.DisplayFor(model => model.StudentName)</h3>
 <h3>Enrollment Date: @Html.DisplayFor(model => model.EnrollmentDate)</h3>
 
-@if(@Model.Courses.Count == 0)
+@if(@Model.Course.Count == 0)
 {
   <p>This student has not added any courses.</p>
 }
@@ -20,7 +20,7 @@ else
   <h4>Courses this student is taking:</h4>
   <ul>
   
-  @foreach(Course course in Model.Courses)
+  @foreach(Course course in Model.Course)
   {
     string courses = "";
     @if(course.JoinDepartment.Count == 0)
@@ -41,6 +41,7 @@ else
   </ul>
 }
 
+<p>@Html.ActionLink("Add course for this student", "AddCourse", new { id = Model.StudentId})</p>
 <p>@Html.ActionLink("Back to Students", "Index")</p>
 <p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
 <p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
