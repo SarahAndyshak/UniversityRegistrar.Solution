@@ -18,9 +18,13 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Index()
     {
-      List<Course> model = _db.Courses
-                              .Include(course => course.Student)
-                              .ToList();
+            Student thisStudent = _db.Courses
+        .Include(thing => thing.JoinStudent)
+        .ThenInclude(thing => thing.Course)
+        .FirstOrDefault(student => student.CourseId == id);
+      // List<Course> model = _db.Courses
+      //                         .Include(course => course.Student)
+      //                         .ToList();
       return View(model);
     }
 

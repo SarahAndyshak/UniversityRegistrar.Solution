@@ -1,6 +1,29 @@
-Bugs:
-- course details
-- student details
+Bugs: 
+- Course details not display courses for students *it is saving in database*
+-Student details--
+
+- StudentCourse and Course within student are doing some of the same things. (i.e., redundancies in code, may or may not throw errors)
+
+- CourseDepartment is currently many to many (i.e., many departments to one course, or many courses to one department). should be many courses to 1 department, but 1 department for 1 singular course
+
+new carl code in students controller:
+public ActionResult Details(int id)
+    {
+      Student thisStudent = _db.Students
+        .Include(thing => thing.JoinStudent)
+        .ThenInclude(thing => thing.Course)
+        .FirstOrDefault(student => student.StudentId == id);
+
+      (our code below.....carl code above)
+      // Student thisStudent = _db.Students
+      //                           .Include(course => course.Course)
+      //                           .ThenInclude(course => course.JoinStudent)
+      //                           .ThenInclude(join => join.Course)
+      //                           .FirstOrDefault(student => student.StudentId == id);
+      return View(thisStudent);
+    }
+
+- debugger bugfix debugger
 
 
 Stretch Goals:

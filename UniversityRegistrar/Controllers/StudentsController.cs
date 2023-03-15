@@ -37,11 +37,18 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Details(int id)
     {
+      //Carls code suggestion
       Student thisStudent = _db.Students
-                                .Include(course => course.Course)
-                                .ThenInclude(course => course.JoinDepartment)
-                                .ThenInclude(join => join.Department)
-                                .FirstOrDefault(student => student.StudentId == id);
+        .Include(thing => thing.JoinStudent)
+        .ThenInclude(thing => thing.Course)
+        .FirstOrDefault(student => student.StudentId == id);
+
+
+      // Student thisStudent = _db.Students
+      //                           .Include(course => course.Course)
+      //                           .ThenInclude(course => course.JoinStudent)
+      //                           .ThenInclude(join => join.Course)
+      //                           .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);
     }
 
