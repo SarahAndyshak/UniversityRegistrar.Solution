@@ -25,7 +25,8 @@ else
     {
       @Html.ActionLink($"{course.Description}", "Details", new { id = course.CourseId })
     }
-    | @course.Student.StudentName
+        @course.Description
+    @* | @course.Department.CourseName *@
   </li>
 }
 </ul>

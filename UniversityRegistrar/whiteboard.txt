@@ -1,5 +1,6 @@
 Bugs:
--  course details
+- course details
+- student details
 
 
 Stretch Goals:

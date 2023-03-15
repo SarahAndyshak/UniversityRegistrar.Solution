@@ -5,16 +5,16 @@
 @model UniversityRegistrar.Models.Course
 
 <h4>Add a new course</h4>
-
-<p>@Html.ValidationMessageFor(model => model.StudentId, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+@* was model.StudentId *@
+<p>@Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
 <p>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
 
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Description)
   @Html.TextBoxFor(model => model.Description, new { required="required" })
-
-
+  @Html.Label("Select Department")
+  @Html.DropDownList("DepartmentId")
 
   <input type="submit" value="Add new course" class="btn btn-default" />
 }

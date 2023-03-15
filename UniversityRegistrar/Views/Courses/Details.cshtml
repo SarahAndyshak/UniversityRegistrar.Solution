@@ -28,14 +28,6 @@ else
       }
     }
   </ul>
-}
-
-@if(@Model.JoinStudent.Count == 0)
-{
-  <p>No students assigned to this course </p>
-}
-else
-{
   <h4>Students in course:</h4>
   <ul>
   @foreach(StudentCourse join in Model.JoinStudent)
@@ -49,6 +41,8 @@ else
   }
   </ul>
 }
+
+
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Edit Course or Student", "Edit", new { id = Model.CourseId })</p>

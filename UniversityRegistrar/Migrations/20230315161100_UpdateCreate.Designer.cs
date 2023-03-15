@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversityRegistrar.Models;
 
@@ -10,9 +11,10 @@ using UniversityRegistrar.Models;
 namespace UniversityRegistrar.Migrations
 {
     [DbContext(typeof(UniversityRegistrarContext))]
-    partial class UniversityRegistrarContextModelSnapshot : ModelSnapshot
+    [Migration("20230315161100_UpdateCreate")]
+    partial class UpdateCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,8 +41,6 @@ namespace UniversityRegistrar.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("CourseId");
-
-                    b.HasIndex("DepartmentId");
 
                     b.HasIndex("StudentId");
 
@@ -119,22 +119,14 @@ namespace UniversityRegistrar.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("StudentCourses");
+                    b.ToTable("StudentCourse");
                 });
 
             modelBuilder.Entity("UniversityRegistrar.Models.Course", b =>
                 {
-                    b.HasOne("UniversityRegistrar.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("UniversityRegistrar.Models.Student", "Student")
                         .WithMany("Courses")
                         .HasForeignKey("StudentId");
-
-                    b.Navigation("Department");
 
                     b.Navigation("Student");
                 });

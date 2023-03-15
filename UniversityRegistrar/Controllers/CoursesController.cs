@@ -26,7 +26,8 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "CourseName");
+      // ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
       return View();
     }
 
@@ -35,7 +36,8 @@ namespace UniversityRegistrar.Controllers
     {
       if (!ModelState.IsValid)
       {
-        ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
+        // ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
+        ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "CourseName");
         return View(course);
       }
       else
@@ -45,16 +47,24 @@ namespace UniversityRegistrar.Controllers
         return RedirectToAction("Index");
       }
     }
+    //line 38 old code: ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
 
     public ActionResult Details(int id)
     {
       Course thisCourse = _db.Courses
-              .Include(course => course.Student)
-              .Include(course => course.JoinDepartment)
-              .ThenInclude(join => join.Department)
+              .Include(course => course.JoinStudent)
+              .ThenInclude(join => join.Student)
               .FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
     }
+    //  public ActionResult Details(int id)
+    // {
+    //   Department thisDepartment = _db.Departments
+    //       .Include(department => department.JoinDepartment)
+    //       .ThenInclude(join => join.Course)
+    //       .FirstOrDefault(department => department.DepartmentId == id);
+    //   return View(thisDepartment);
+    // }
 
     public ActionResult Edit(int id)
     {
