@@ -18,13 +18,9 @@ namespace UniversityRegistrar.Controllers
 
     public ActionResult Index()
     {
-            Student thisStudent = _db.Courses
-        .Include(thing => thing.JoinStudent)
-        .ThenInclude(thing => thing.Course)
-        .FirstOrDefault(student => student.CourseId == id);
-      // List<Course> model = _db.Courses
-      //                         .Include(course => course.Student)
-      //                         .ToList();
+      List<Course> model = _db.Courses
+                              .Include(course => course.Student)
+                              .ToList();
       return View(model);
     }
 
@@ -53,14 +49,14 @@ namespace UniversityRegistrar.Controllers
     }
     //line 38 old code: ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
 
-    public ActionResult Details(int id)
-    {
-      Course thisCourse = _db.Courses
-              .Include(course => course.JoinStudent)
-              .ThenInclude(join => join.Student)
-              .FirstOrDefault(course => course.CourseId == id);
-      return View(thisCourse);
-    }
+    // public ActionResult Details(int id)
+    // {
+    //   Course thisCourse = _db.Courses
+    //           .Include(course => course.JoinStudent)
+    //           .ThenInclude(join => join.Student)
+    //           .FirstOrDefault(course => course.CourseId == id);
+    //   return View(thisCourse);
+    // }
     //  public ActionResult Details(int id)
     // {
     //   Department thisDepartment = _db.Departments
@@ -69,6 +65,26 @@ namespace UniversityRegistrar.Controllers
     //       .FirstOrDefault(department => department.DepartmentId == id);
     //   return View(thisDepartment);
     // }
+
+    // public ActionResult Details(int id) // original
+    // {
+    //   Course thisCourse = _db.Courses
+    //     .Include(course => course.JoinStudent)
+    //     .ThenInclude(student => student.Student)
+    //     .FirstOrDefault(course => course.CourseId == id);
+    //   return View(thisCourse);
+    // }
+
+    public ActionResult Details(int id)
+    {
+      Course thisCourse = _db.Courses
+        .Include(course => course.JoinStudent)
+        .ThenInclude(join => join.Student)
+        .Include(course => course.JoinDepartment)
+        .ThenInclude(join => join.Department)
+        .FirstOrDefault(course => course.CourseId == id);
+      return View(thisCourse);
+    }
 
     public ActionResult Edit(int id)
     {
