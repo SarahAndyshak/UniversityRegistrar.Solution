@@ -19,14 +19,16 @@ _This is site built for users to enter new students...._
 
 * Clone this repo.
 * Open the terminal and navigate to this project's production directory called "UniversityRegistrar.Solution".
-* Within the production directory "UniversityRegistrar", create a new file called appsettings.json.
+* Within the production directory "UniversityRegistrar", create a new file called `appsettings.json`.
 * Within appsettings.json, put in the following code.
+```
 {
   "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=university_registrar;uid=root;pwd=epicodus;"
+      "DefaultConnection": "Server=localhost;Port=3306;database=university_registrar;uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
   }
 }
-* Within the production directory "University Registrar", run dotnet watch run in the command line to start the project in development mode with a watcher.
+```
+* Within the production directory "University Registrar", run `dotnet watch run` in the command line to start the project in development mode with a watcher.
 
 * Open the browser to https://localhost:5001.
 
