@@ -42,13 +42,6 @@ namespace UniversityRegistrar.Controllers
         .Include(thing => thing.JoinStudent)
         .ThenInclude(thing => thing.Course)
         .FirstOrDefault(student => student.StudentId == id);
-
-
-      // Student thisStudent = _db.Students
-      //                           .Include(course => course.Course)
-      //                           .ThenInclude(course => course.JoinStudent)
-      //                           .ThenInclude(join => join.Course)
-      //                           .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);
     }
 
@@ -109,7 +102,6 @@ namespace UniversityRegistrar.Controllers
       _db.StudentCourses.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
-    
     }
   }
 }

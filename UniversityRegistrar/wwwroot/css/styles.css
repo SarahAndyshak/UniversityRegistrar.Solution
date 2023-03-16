@@ -1,0 +1,13 @@
+body {
+  font-family: sans-serif;
+}
+
+div#main-body {
+  margin-top: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+div#index-nav {
+  text-align: center;
+}

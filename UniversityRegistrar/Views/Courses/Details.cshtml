@@ -5,13 +5,11 @@
 @using UniversityRegistrar.Models
 @model UniversityRegistrar.Models.Course
 
-<h2>Course Details</h2>
+<h2>📚 Course Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>  
 
-@* Model.JoinDepartment == null ||  *@
 @if(Model.JoinDepartment.Count == 0)
-@* @if(@Model.JoinDepartment.Count == 0) *@
 {
   <p>This course does not have an assigned department yet!</p>
 }
@@ -30,11 +28,8 @@ else
     }
   </ul>
 }
-@* <h3>@Html.DisplayNameFor(model => model.Student): @Html.DisplayFor(model => model.Student.StudentName)</h3> *@
 
-@* Model.JoinStudent == null ||  *@
-  @if(Model.JoinStudent.Count == 0)
-  @* @if(@Model.JoinDepartment.Count == 0) *@
+@if(Model.JoinStudent.Count == 0)
 {
   <p>This course has no students!</p>
 }
@@ -45,7 +40,6 @@ else
   
   @foreach(StudentCourse join in Model.JoinStudent)
   {
-    @*<li>@join.Student.StudentId</li>*@
     <li>@join.Student.StudentName</li>
 
     @using (Html.BeginForm("DeleteJoin", "Courses"))
@@ -58,8 +52,7 @@ else
 }
 
 
-
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Course or Student", "Edit", new { id = Model.CourseId })</p>
-<p>@Html.ActionLink("Add a Deparement", "AddDepartment", new { id = Model.CourseId })</p>
-<p>@Html.ActionLink("Delete Course", "Delete", new { id = Model.CourseId })</p>
+<div id="index-nav">
+<p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId }) 📚 @Html.ActionLink("Delete Course", "Delete", new { id = Model.CourseId })</p>
+<p>@Html.ActionLink("Add a Student", "AddStudent", new { id = Model.CourseId }) 📚 @Html.ActionLink("Add a Department", "AddDepartment", new { id = Model.CourseId })</p>
+</div>
