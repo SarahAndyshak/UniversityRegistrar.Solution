@@ -1,6 +1,6 @@
 # _University Registrar_
 
-#### By _Erin Timlin, Jake Maier, & David Jandron_
+#### By _Erin Timlin, Jake Maier, David Jandron, & Sarah Andyshak_
 
 #### _A C# web application using MySQL that creates a website for a university registrar_
 
@@ -13,7 +13,7 @@
 
 ## Description
 
-_This is site built for users to enter new students...._
+_This is a C# web application for a University Registrar to add a department, add a course to that department and add a student to that course. The registrar can add, edit, or delete all categories._
 
 ## Setup/Installation Requirements
 
